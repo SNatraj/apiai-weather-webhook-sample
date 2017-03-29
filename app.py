@@ -38,25 +38,13 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "food.discovery":
         return {}
-    
-	#baseurl = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
-    
+       
 	search_query = makeSearchQuery(req)
     
 	if search_query is None:
         return {}
 		
-	#mkey = AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ
-
-    #yql_url = baseurl + urlencode({'query=': search_query}) + urlencode({'&key=': mkey})
-	
-	#yql_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=nearby chinese restaurants&key=AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ"
-	
-    #result = urlopen(yql_url).read()
-    
-	#data = json.loads(result)
-    #res = makeWebhookResult(data)
-    
+   
 	speech = "Restaurant Name " + search_query
 	
     print("Response:")
@@ -69,44 +57,14 @@ def makeSearchQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
     squery = parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
-	
-
-	
+		
 	if squery is None:
        return None
 
     return squery
 
 
-def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
 
-    result = query.get('results')
-    
-	if result is None:
-        return {}
-
-    name = result.get('name')
-	
-    if name is None:
-        return {}
-
-    #print(json.dumps(item, indent=4))
-
-    speech = "Restaurant Name "
-	
-    print("Response:")
-    print(speech)
-
-    return {
-        "speech": speech,
-        "displayText": speech,
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
 
 
 if __name__ == '__main__':
