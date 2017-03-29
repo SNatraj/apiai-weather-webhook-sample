@@ -50,9 +50,9 @@ def processRequest(req):
 
     #yql_url = baseurl + urlencode({'query=': search_query}) + urlencode({'&key=': mkey})
 	
-	yql_url = https://maps.googleapis.com/maps/api/place/textsearch/json?query=nearby chinese restaurants&key=AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ
+	yql_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=nearby chinese restaurants&key=AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ"
 	
-    result = urlopen(yql_url).read()
+    #result = urlopen(yql_url).read()
     
 	#data = json.loads(result)
     #res = makeWebhookResult(data)
