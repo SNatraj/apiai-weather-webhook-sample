@@ -81,9 +81,9 @@ def makeWebhookResult(data):
     if name is None:
         return {}
 
-     # print(json.dumps(item, indent=4))
+    print(json.dumps(item, indent=4))
 
-    speech = "Restaurant Name " + name
+    speech = "Restaurant Name "+ parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
 	
     print("Response:")
     print(speech)
