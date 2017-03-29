@@ -38,31 +38,16 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "food.discovery":
         return {}
-       
-	search_query = makeSearchQuery(req)
-    
-	if search_query is None:
-        return {}
-		
-   
-	speech = "Restaurant Name " + search_query
+    result = req.get("result")
+    parameters = result.get("parameters")
+	
+	 
+	speech = "Restaurant Name " + parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
 	
     print("Response:")
     print(speech)
 	
 	return res
-
-
-def makeSearchQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    squery = parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
-		
-	if squery is None:
-       return None
-
-    return squery
-
 
 
 
