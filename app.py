@@ -41,23 +41,23 @@ def processRequest(req):
     
 	#baseurl = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
     
-	#search_query = makeSearchQuery(req)
+	search_query = makeSearchQuery(req)
     
-	#if search_query is None:
-     #   return {}
+	if search_query is None:
+        return {}
 		
 	#mkey = AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ
 
     #yql_url = baseurl + urlencode({'query=': search_query}) + urlencode({'&key=': mkey})
 	
-	yql_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=nearby chinese restaurants&key=AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ"
+	#yql_url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=nearby chinese restaurants&key=AIzaSyATJ_XciNhA1zgIT3yRgFk8koDu_b0VkMQ"
 	
     #result = urlopen(yql_url).read()
     
 	#data = json.loads(result)
     #res = makeWebhookResult(data)
     
-	speech = "Restaurant Name " + yql_url
+	speech = "Restaurant Name " + search_query
 	
     print("Response:")
     print(speech)
@@ -69,6 +69,9 @@ def makeSearchQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
     squery = parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
+	
+
+	
 	if squery is None:
        return None
 
