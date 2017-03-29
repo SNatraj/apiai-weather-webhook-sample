@@ -59,11 +59,11 @@ def processRequest(req):
 def makeSearchQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    #city = parameters.get("geo-city")
-    #if city is None:
-    #   return None
+    squery = parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
+	if squery is None:
+       return None
 
-    return parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
+    return squery
 
 
 def makeWebhookResult(data):
@@ -81,9 +81,9 @@ def makeWebhookResult(data):
     if name is None:
         return {}
 
-    print(json.dumps(item, indent=4))
+    #print(json.dumps(item, indent=4))
 
-    speech = "Restaurant Name "+ parameters.get("restaurant-distance") + " " + parameters.get("cuisine-type") + " restaurants"
+    speech = "Restaurant Name "
 	
     print("Response:")
     print(speech)
